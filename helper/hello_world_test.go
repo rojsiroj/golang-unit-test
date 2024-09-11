@@ -20,6 +20,19 @@ func BenchmarkHelloWorldIzz(b *testing.B) {
 	}
 }
 
+func BenchmarkHelloWorldSubBenchmark(b *testing.B) {
+	b.Run("IzzBenchmark", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Izz")
+		}
+	})
+	b.Run("LuthfiBenchmark", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Luthfi")
+		}
+	})
+}
+
 func TestMain(m *testing.M) {
 	fmt.Println("BEFORE UNIT TEST")
 	m.Run()
