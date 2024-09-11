@@ -33,6 +33,24 @@ func BenchmarkHelloWorldSubBenchmark(b *testing.B) {
 	})
 }
 
+func BenchmarkHelloWorldTableBenchmark(b *testing.B) {
+	benchmarks := []struct {
+		name    string
+		request string
+	}{
+		{name: "SitiBenchmarkTable", request: "Siti"},
+		{name: "RohimatulBenchmarkTable", request: "Rohimatul"},
+		{name: "LatifahBenchmarkTable", request: "Latifah"},
+	}
+	for _, benchmark := range benchmarks {
+		b.Run(benchmark.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(benchmark.request)
+			}
+		})
+	}
+}
+
 func TestMain(m *testing.M) {
 	fmt.Println("BEFORE UNIT TEST")
 	m.Run()
